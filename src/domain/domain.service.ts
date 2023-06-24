@@ -5,15 +5,11 @@ import {
   Logger,
 } from '@nestjs/common';
 import { DomainRepository } from './db/domain.repository';
-import { IDomainRepository } from './db/IDomainRepository.interface';
-import { error } from 'console';
 
 @Injectable()
 export class DomainService {
   private logger = new Logger(DomainService.name);
-  constructor(
-    @Inject('IDomainRepository') private domainRepository: IDomainRepository,
-  ) {}
+  constructor(private domainRepository: DomainRepository) {}
 
   async findAllDomains() {
     try {

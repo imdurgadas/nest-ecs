@@ -7,11 +7,6 @@ import { AtGuard } from './auth/guards/at.guard';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableVersioning({
-    type: VersioningType.URI,
-    defaultVersion: '1',
-  });
-
   app.use(helmet());
   app.useGlobalPipes(
     new ValidationPipe({
