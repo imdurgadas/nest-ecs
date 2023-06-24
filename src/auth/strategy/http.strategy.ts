@@ -10,7 +10,6 @@ export class HttpStrategy extends PassportStrategy(Strategy, 'bearer') {
   }
 
   async validate(token: string) {
-    console.log('In HttpStrategy');
     return await this.authService.validateToken(token);
   }
 }
