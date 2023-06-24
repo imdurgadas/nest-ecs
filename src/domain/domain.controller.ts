@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { DomainService } from './domain.service';
 
-@Controller('domain')
-export class DomainController {}
+@Controller('domains')
+export class DomainController {
+  constructor(private readonly domainService: DomainService) {}
+
+  @Get()
+  async getDomains() {
+    return await this.domainService.findAllDomains();
+  }
+}

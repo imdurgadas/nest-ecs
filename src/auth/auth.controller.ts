@@ -1,7 +1,6 @@
-import { Controller, Get, Req } from '@nestjs/common';
-import { Request } from 'express';
-import { GetCurrentUser } from './decorator/user.decorator';
+import { Controller, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { GetCurrentUser } from './decorator/user.decorator';
 
 @Controller('auth')
 export class AuthController {
