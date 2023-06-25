@@ -1,0 +1,38 @@
+Parameters:
+  App:
+    Type: String
+    Description: Your application's name.
+  Env:
+    Type: String
+    Description: The name of the environment being deployed.
+
+Resources:
+  domain:
+    Metadata:
+      'aws:copilot:description': 'An Amazon DynamoDB table for domain'
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub ${App}-${Env}-domain
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: "S"
+        - AttributeName: SK
+          AttributeType: "S"
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+
+Outputs:
+  domainName:
+    Description: "The name of this DynamoDB table."
+    Value: !Ref domain
+    Export: 
+      Name: !Sub ${App}-${Env}-domainTableName
+  domainDynamoDBTableARN:
+    Description: "The ARN of the domain DynamoDB table."
+    Value: !GetAtt domain.Arn
+    Export: 
+      Name: !Sub ${App}-${Env}-domainTableArn
