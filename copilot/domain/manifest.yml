@@ -52,8 +52,17 @@ secrets:
   OKTA_CLIENTID: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/OKTA_CLIENTID
   OKTA_ISSUER: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/OKTA_ISSUER
 # You can override any of the values defined above by environment.
-#environments:
-#  test:
-#    count: 2               # Number of tasks to run for the "test" environment.
-#    deployment:            # The deployment strategy for the "test" environment.
-#       rolling: 'recreate' # Stops existing tasks before new ones are started for faster deployments.
+
+environments:
+  dev:
+    count:
+      range:
+        min: 1
+        max: 3
+        spot_from: 1
+      cooldown:
+        in: 60s
+        out: 30s
+      cpu_percentage: 70
+      requests: 50
+      response_time: 2s
