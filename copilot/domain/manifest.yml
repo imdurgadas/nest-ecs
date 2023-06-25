@@ -42,11 +42,15 @@ network:
 #
 variables: # Pass environment variables as key value pairs.
   LOG_LEVEL: info
+  OKTA_AUDIENCE: api://default
+  SCOPE: nest-ecs
   DOMAIN_TABLE_NAME:
     from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-domainTableName
 
 secrets:
   RAPIDAPI_KEY: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/RAPIDAPI_KEY
+  OKTA_CLIENTID: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/OKTA_CLIENTID
+  OKTA_ISSUER: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/OKTA_ISSUER
 # You can override any of the values defined above by environment.
 #environments:
 #  test:
